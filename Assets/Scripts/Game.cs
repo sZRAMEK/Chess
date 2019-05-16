@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scripts.Figures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,19 +10,21 @@ namespace Scripts
     public class Game : IGame
     {
         private IPlayer activePlayer;
-        private IPlayer playerWhite;
-        private IPlayer playerBlack;
+        private IPlayer player1;
+        private IPlayer player2;
         private IBoard board;
 
         public IPlayer winer { private set; get; }
 
-        public Game(IPlayer playerWhite, IPlayer playerBlack,IBoard board)
+        public Game(IPlayer player1, IPlayer player2,IBoard board)
         {
-            
-            this.playerWhite = playerWhite;
-            this.playerBlack = playerBlack;
+            if (player1.Color == player2.Color)
+                throw new InvalidMoveException(); 
+
+            this.player1 = player1;
+            this.player2 = player2;
             this.board = board;
-            activePlayer = this.playerWhite;
+            activePlayer = this.player1;
         }
 
         public void GameLoop(string input)
@@ -40,10 +43,10 @@ namespace Scripts
 
         private IPlayer NextPlayer()
         {
-            if (activePlayer == playerWhite)
-                return playerBlack;
+            if (activePlayer == player1)
+                return player2;
             else
-                return playerWhite;
+                return player1;
         }
 
         private IPlayer DetermineWinner()
