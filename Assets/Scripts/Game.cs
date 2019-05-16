@@ -1,4 +1,5 @@
-﻿using Scripts.Figures;
+﻿using Assets.Enums;
+using Scripts.Figures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,18 @@ namespace Scripts
         public Game(IPlayer player1, IPlayer player2,IBoard board)
         {
             if (player1.Color == player2.Color)
-                throw new InvalidMoveException(); 
+            {
+                throw new InvalidGameSteupException(); 
+            }
 
             this.player1 = player1;
             this.player2 = player2;
             this.board = board;
+
+            if(player1.Color == Color.White)
             activePlayer = this.player1;
+            else
+            activePlayer = this.player2;
         }
 
         public void GameLoop(string input)
