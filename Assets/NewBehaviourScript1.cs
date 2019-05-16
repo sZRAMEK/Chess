@@ -41,7 +41,17 @@ public class NewBehaviourScript1 : MonoBehaviour
     public void GetMessage(string message)
     {
         Debug.Log(message);
+        try
+        {
+
         gra.GameLoop(message);
+
+        }
+        catch (Exception ex)
+        {
+
+            Debug.Log(ex.Message);
+        }
         DrawBoard(gra.GetBoardDescription());
     }
 
