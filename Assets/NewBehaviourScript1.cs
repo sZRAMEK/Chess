@@ -50,7 +50,7 @@ public class NewBehaviourScript1 : MonoBehaviour
         catch (Exception ex)
         {
 
-            Debug.Log(ex.Message);
+            Debug.Log(ex.Message + " " + message);
         }
         DrawBoard(gra.GetBoardDescription());
     }

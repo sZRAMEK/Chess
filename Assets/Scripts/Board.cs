@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Newtonsoft.Json;
 using Scripts.Figures;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace Scripts
 {
-    class Board : IBoard
+    public class Board : IBoard
     {
-        private List<IFigure> figures;
+        public List<IFigure> figures { get; set; }
         public int Size { get; private set; }
+        
 
         public Board(List<IFigure> figures, int size)
         {
             this.Size = size;
-            this.figures = figures;
+            this.figures = figures; 
         }
 
 
@@ -105,12 +107,16 @@ namespace Scripts
 
         public string BoardToString()
         {
+            
             string result = "";
             foreach (var item in figures)
             {
-                result += $"{item.position.x},{item.position.y},{item.GetType().Name.ToString()}.";
+                result += $"{item.position.x},{item.position.y},{item.Type},{item.color}.";
             }
             result = result.Remove(result.Length - 1, 1);
+            
+
+            
             return result;
 
         }

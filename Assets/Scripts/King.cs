@@ -1,4 +1,5 @@
-﻿using Scripts;
+﻿using Assets.Interfaces;
+using Scripts;
 using Scripts.Figures;
 using System;
 using System.Collections.Generic;
@@ -8,18 +9,22 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
-    class King : IKing
+    public class King : IKing
     {
         public King(IPosition position,Color color)
         {
             this.position = position;
             this.color = color;
+            this.Type = FigureType.King;
         }
 
         public IPosition position { get; private set; }
 
         public Color color { get; private set; }
 
+        public FigureType Type { get; private set; }
+
+        
 
         public bool isPosibleMove(IPosition to)
         {

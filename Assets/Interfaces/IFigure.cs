@@ -1,4 +1,5 @@
-﻿using Scripts.Figures;
+﻿using Assets.Interfaces;
+using Scripts.Figures;
 
 namespace Scripts
 {
@@ -6,6 +7,7 @@ namespace Scripts
     {
         IPosition position { get; }
         Color color { get; }
+        FigureType Type { get; }
 
         int LegalMovesCount(IBoard board);
         
