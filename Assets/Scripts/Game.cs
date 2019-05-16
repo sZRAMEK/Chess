@@ -23,12 +23,12 @@ namespace Scripts
             {
                 throw new InvalidGameSteupException(); 
             }
-
             this.player1 = player1;
             this.player2 = player2;
             this.board = board;
 
-            if(player1.Color == Color.White)
+
+            if (player1.Color == Color.White)
             activePlayer = this.player1;
             else
             activePlayer = this.player2;
@@ -43,6 +43,7 @@ namespace Scripts
                 activePlayer.Move();
                 activePlayer = NextPlayer();
                 
+          
             }
         }
 
