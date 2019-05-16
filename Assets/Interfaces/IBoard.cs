@@ -4,7 +4,7 @@ namespace Scripts
 {
     public interface IBoard
     {
-        Color DetermineWinner();
+        Color? DetermineWinner();
         void Move(IMove move);
         bool isUnderPreasure(IPosition to, Color color);
         bool isPositionInBoundry(IPosition to);

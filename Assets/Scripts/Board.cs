@@ -20,13 +20,13 @@ namespace Scripts
         }
 
 
-        public Color DetermineWinner()
+        public Color? DetermineWinner()
         {
             if (isCheckMate(Color.White))
                 return Color.Black;
             if (isCheckMate(Color.Black))
                 return Color.White;
-            return Color.None;
+            return null;
         }
 
         private bool isCheckMate(Color color)

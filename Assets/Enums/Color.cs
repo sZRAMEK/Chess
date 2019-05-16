@@ -8,7 +8,7 @@ namespace Scripts.Figures
 {
     public enum Color
     {
-        None,
+        
         Black,
         White
     }

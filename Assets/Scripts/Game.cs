@@ -46,8 +46,6 @@ namespace Scripts
             }
         }
 
-        
-
         private IPlayer NextPlayer()
         {
             if (activePlayer == player1)
