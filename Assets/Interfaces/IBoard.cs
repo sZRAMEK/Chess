@@ -14,7 +14,6 @@ namespace Scripts
         bool isPositionInBoundry(IPosition to);
         int Size { get;}
         string BoardToString();
-
-
+        bool isFieldColor(Color color, IPosition from);
     }
 }

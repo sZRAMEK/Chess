@@ -34,7 +34,7 @@ namespace Scripts
             activePlayer = this.player2;
         }
 
-        public void GameLoop(string input)
+        public void MakeMove(string input)
         {
             activePlayer.GetInput(input);
             if (winer  == null)
@@ -66,7 +66,7 @@ namespace Scripts
 
         public string GetBoardDescription()
         {
-           return  board.BoardToString();
+           return  activePlayer.Color+"/"+board.BoardToString();
         }
     }
 }

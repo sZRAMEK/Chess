@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Scripts.Figures
+namespace Assets.Enums
 {
+
     [Serializable]
-    internal class InvalidMoveException : Exception
+    public class InvalidMoveException : Exception
     {
-        public InvalidMoveException()
-        {
-        }
-
-        public InvalidMoveException(string message) : base(message)
-        {
-        }
-
-        public InvalidMoveException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        protected InvalidMoveException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public InvalidMoveException() { }
+        public InvalidMoveException(string message) : base(message) { }
+        public InvalidMoveException(string message, Exception inner) : base(message, inner) { }
+        protected InvalidMoveException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }

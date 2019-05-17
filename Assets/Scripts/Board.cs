@@ -1,5 +1,6 @@
-﻿using Assets.Scripts;
-using Newtonsoft.Json;
+﻿using Assets.Enums;
+using Assets.Interfaces;
+using Assets.Scripts;
 using Scripts.Figures;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,17 @@ namespace Scripts
     {
         public List<IFigure> figures { get; set; }
         public int Size { get; private set; }
-        
+
+        IMove lastMove;
+
+
 
         public Board(List<IFigure> figures, int size)
         {
             this.Size = size;
-            this.figures = figures; 
+            this.figures = figures;
+            
+            
         }
 
 
@@ -50,7 +56,20 @@ namespace Scripts
 
         public void Move(IMove move)
         {
+            if (move.From.x > 7 || move.From.y > 7 || move.To.x < 0 || move.To.y < 0 || move.To.x > 7 || move.To.y > 7 || move.To.x < 0 || move.To.y < 0)
+            {
+                throw new OutOfBoundaryException("wspolrzedna poza boardem");
+            }
+
             IFigure figureToMove = GetFigureAt(move.From);
+            
+
+            if (lastMove != null)
+            {
+                IFigure lastMovedFigure = GetFigureAt(lastMove.To);
+                if (figureToMove.color == lastMovedFigure.color)
+                    throw new InvalidMoveException($"{figureToMove.color} cant move second time in row");
+            }
 
             if (figureToMove.isLegalMove(move.To, this))
             {
@@ -60,13 +79,14 @@ namespace Scripts
                     figureToMove.Move(move.From);
                     throw new InvalidMoveException("Your King will be checked after that move");
                 }
+                lastMove = move;
             }
             
         }
 
         private IFigure GetKing(Color color)
         {
-            return figures.Find(x => x.color == color && (x is IKing));
+            return figures.Find(x => x.color == color && x.Type==FigureType.King);
         }
 
         private bool isCheck(IFigure king)
@@ -83,7 +103,9 @@ namespace Scripts
 
         private IFigure GetFigureAt(IPosition from)
         {
-            return figures.Find(x => x.position.x == from.x && x.position.y == from.y);
+            IFigure returned= figures.Find(x => x.position.x == from.x && x.position.y == from.y);
+            if (returned == null) { throw new NoFigureException("nie masz tam figury"); }
+            return returned;
         }
 
         
@@ -119,6 +141,13 @@ namespace Scripts
             
             return result;
 
+        }
+
+        public bool isFieldColor(Color color, IPosition from)
+        {
+            if (GetFigureAt(from).color == color)
+                return true;
+            return false;
         }
     }
 }

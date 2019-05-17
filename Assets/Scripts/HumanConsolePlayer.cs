@@ -1,4 +1,5 @@
-﻿using Scripts;
+﻿using Assets.Enums;
+using Scripts;
 using Scripts.Figures;
 using System;
 using System.Collections.Generic;
@@ -32,10 +33,11 @@ namespace Scripts
         
         public void Move()
         {
+
             timer.Start();
-            
             //input = Console.ReadLine();
             IMove move = moveParser.Parse(input);
+            if (board.isFieldColor(Color, move.From)) { throw new InvalidMoveException("nie twoj pionek"); }
             board.Move(move);
             timer.Stop();
 

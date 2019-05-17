@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿using Assets.Enums;
+using Assets.Scripts;
 using Scripts;
 using System;
 using System.Collections;
@@ -8,7 +9,8 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript1 : MonoBehaviour
 {
-
+    public GameObject WHITEMARK;
+    public GameObject BLACKMARK;
     public GameObject KnightTemplate;
 
     public Game gra;
@@ -20,21 +22,13 @@ public class NewBehaviourScript1 : MonoBehaviour
         List<IFigure> chessSet = new List<IFigure>();
         chessSet.Add(new King(new Position(1, 1), Scripts.Figures.Color.Black));
         chessSet.Add(new King(new Position(5, 7), Scripts.Figures.Color.White));
-
-        HumanConsolePlayer player1 = new HumanConsolePlayer(new Board(chessSet, 8), new MoveParser(), new Timer(5),Scripts.Figures.Color.Black);
-        HumanConsolePlayer player2 = new HumanConsolePlayer(new Board(chessSet, 8), new MoveParser(), new Timer(5),Scripts.Figures.Color.White);
-
         IBoard board = new Board(chessSet, 8);
-
+        HumanConsolePlayer player1 = new HumanConsolePlayer(board, new MoveParser(), new Timer(5),Scripts.Figures.Color.Black);
+        HumanConsolePlayer player2 = new HumanConsolePlayer(board, new MoveParser(), new Timer(5),Scripts.Figures.Color.White);
 
         gra = new Game(player1, player2, board);
 
-
         DrawBoard(gra.GetBoardDescription());
-
-        
-        
-
 
     }
 
@@ -44,21 +38,44 @@ public class NewBehaviourScript1 : MonoBehaviour
         try
         {
 
-        gra.GameLoop(message);
+            gra.MakeMove(message);
 
         }
-        catch (Exception ex)
+        catch (InvalidGameSteupException ex)
         {
-
             Debug.Log(ex.Message + " " + message);
         }
+        catch (InvalidInputException ex)
+        {
+            Debug.Log(ex.Message + " " + message);
+        }
+        catch (InvalidMoveException ex )
+        {
+            Debug.Log(ex.Message + " " + message);
+        }
+        
         DrawBoard(gra.GetBoardDescription());
     }
 
     private void DrawBoard(string desc)
     {
+        string[] boardinfo = desc.Split('/');
+        if (boardinfo[0] == "White")
+        {
+            BLACKMARK.GetComponent<SpriteRenderer>().enabled = false;
+            WHITEMARK.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            BLACKMARK.GetComponent<SpriteRenderer>().enabled = true;
+            WHITEMARK.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+
+
+
         Debug.Log(desc);
-        string[] FIGURY = desc.Split('.');
+        string[] FIGURY = boardinfo[1].Split('.');
 
         foreach (var item in instantions)
         {
