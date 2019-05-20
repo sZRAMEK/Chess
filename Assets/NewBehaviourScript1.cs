@@ -11,17 +11,23 @@ public class NewBehaviourScript1 : MonoBehaviour
 {
     public GameObject WHITEMARK;
     public GameObject BLACKMARK;
-    public GameObject KnightTemplate;
+    public GameObject KnightWhiteTemplate;
+    public GameObject KnightBlackTemplate;
 
     public Game gra;
     List<GameObject> instantions = new List<GameObject>();
 
+    public GameObject WhiteRockTemplate;
+    public GameObject BlackRockTemplate;
 
     void Start()
         {
         List<IFigure> chessSet = new List<IFigure>();
-        chessSet.Add(new King(new Position(1, 1), Scripts.Figures.Color.Black));
-        chessSet.Add(new King(new Position(5, 7), Scripts.Figures.Color.White));
+        chessSet.Add(new King(new Position(4, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new King(new Position(4, 0), Scripts.Figures.Color.White));
+
+        chessSet.Add(new Rock(new Position(0, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Rock(new Position(7, 0), Scripts.Figures.Color.White));
         IBoard board = new Board(chessSet, 8);
         HumanConsolePlayer player1 = new HumanConsolePlayer(board, new MoveParser(), new Timer(5),Scripts.Figures.Color.Black);
         HumanConsolePlayer player2 = new HumanConsolePlayer(board, new MoveParser(), new Timer(5),Scripts.Figures.Color.White);
@@ -53,7 +59,16 @@ public class NewBehaviourScript1 : MonoBehaviour
         {
             Debug.Log(ex.Message + " " + message);
         }
-        
+        catch (NoFigureException ex)
+        {
+            Debug.Log(ex.Message + " " + message);
+        }
+        catch (OutOfBoundaryException ex)
+        {
+            Debug.Log(ex.Message + " " + message);
+        }
+
+
         DrawBoard(gra.GetBoardDescription());
     }
 
@@ -93,9 +108,25 @@ public class NewBehaviourScript1 : MonoBehaviour
 
     private void createobiect(string[] v)
     {
-        
 
-       instantions.Add(Instantiate(KnightTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1),Quaternion.identity));
+        if (v[3] == "White")
+        {
+            if(v[2]=="King")
+                instantions.Add(Instantiate(KnightWhiteTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+            else
+                instantions.Add(Instantiate(WhiteRockTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+        }
+        else
+        {
+            if (v[2] == "King")
+                instantions.Add(Instantiate(KnightBlackTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+            else
+                instantions.Add(Instantiate(BlackRockTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+        }
+
+
+
+
     }
 }
 

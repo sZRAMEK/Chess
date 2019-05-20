@@ -9,8 +9,15 @@ namespace Assets.Scripts
 
         public Position(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            if (x < 8 && y < 8)
+            {
+                this.x = x;
+                this.y = y;
+            }
+            else
+            {
+                throw new OutOfBoundaryException("pozycja poza szachownica");
+            }
         }
 
     }

@@ -15,5 +15,6 @@ namespace Scripts
         int Size { get;}
         string BoardToString();
         bool isFieldColor(Color color, IPosition from);
+        bool isSomethingBetwen(IPosition position, IPosition to);
     }
 }
