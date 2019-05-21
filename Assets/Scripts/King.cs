@@ -16,6 +16,7 @@ namespace Assets.Scripts
             this.position = position;
             this.color = color;
             this.Type = FigureType.King;
+            moved = false;
         }
 
         public IPosition position { get; private set; }
@@ -23,6 +24,8 @@ namespace Assets.Scripts
         public Color color { get; private set; }
 
         public FigureType Type { get; private set; }
+
+        public bool moved;
 
         
 
@@ -57,12 +60,20 @@ namespace Assets.Scripts
         public void Move(IPosition to)
         {
             position = to;
+            moved = true;
         }
 
         public bool isLegalMove(IPosition to, IBoard board)
         {
             if (isPosibleMove(to)&& board.isPositionInBoundry(to))
                 return true;
+
+            if (!moved && Math.Abs(position.y - to.y) == 2 && position.x == to.x)
+            {
+                if (position.y - to.y < 0&& board.) { }
+            }
+
+
             return false;
 
         }

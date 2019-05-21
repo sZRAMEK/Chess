@@ -16,5 +16,6 @@ namespace Scripts
         string BoardToString();
         bool isFieldColor(Color color, IPosition from);
         bool isSomethingBetwen(IPosition position, IPosition to);
+        IFigure.
     }
 }

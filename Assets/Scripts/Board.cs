@@ -104,7 +104,7 @@ namespace Scripts
             return false;
         }
 
-        private IFigure GetFigureAt(IPosition from)
+        public IFigure GetFigureAt(IPosition from)
         {
             IFigure returned= figures.Find(x => x.position.x == from.x && x.position.y == from.y);
             if (returned == null) { throw new NoFigureException("nie masz tam figury"); }
