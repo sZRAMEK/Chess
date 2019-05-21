@@ -81,7 +81,10 @@ namespace Scripts
                 }
                 lastMove = move;
             }
-            
+            else
+            {
+                throw new InvalidMoveException("you cnat move like that");
+            }
         }
 
         private IFigure GetKing(Color color)
@@ -157,12 +160,15 @@ namespace Scripts
             int vectorX = to.x - position.x;
             int vectorY = to.y - position.y;
             //normalize
-            int min = Math.Min(Math.Abs(vectorX),Math.Abs( vectorY));
-            vectorX /= min;
-            vectorY /= min;
+            int max = Math.Max(Math.Abs(vectorX),Math.Abs( vectorY));
+            
+
+
+            vectorX /= max;
+            vectorY /= max;
 
             int multipler = 1;
-            while (multipler < min)
+            while (multipler < max)
             {
                 if (figures.Find(x => x.position.x == position.x + vectorX * multipler && x.position.y == position.y + vectorY * multipler) != null)
                 {

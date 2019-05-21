@@ -19,6 +19,8 @@ public class NewBehaviourScript1 : MonoBehaviour
 
     public GameObject WhiteRockTemplate;
     public GameObject BlackRockTemplate;
+    public GameObject WhiteBishopTemplate;
+    public GameObject BlackBishopTemplate;
 
     void Start()
         {
@@ -28,6 +30,15 @@ public class NewBehaviourScript1 : MonoBehaviour
 
         chessSet.Add(new Rock(new Position(0, 0), Scripts.Figures.Color.White));
         chessSet.Add(new Rock(new Position(7, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Rock(new Position(0, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Rock(new Position(7, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Bishop(new Position(2, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Bishop(new Position(5, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Bishop(new Position(2, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Bishop(new Position(5, 0), Scripts.Figures.Color.White));
+
+
+
         IBoard board = new Board(chessSet, 8);
         HumanConsolePlayer player1 = new HumanConsolePlayer(board, new MoveParser(), new Timer(5),Scripts.Figures.Color.Black);
         HumanConsolePlayer player2 = new HumanConsolePlayer(board, new MoveParser(), new Timer(5),Scripts.Figures.Color.White);
@@ -111,17 +122,35 @@ public class NewBehaviourScript1 : MonoBehaviour
 
         if (v[3] == "White")
         {
-            if(v[2]=="King")
+            if (v[2] == "King")
+            {
                 instantions.Add(Instantiate(KnightWhiteTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
-            else
+            }
+            else if (v[2] == "Rock")
+            {
                 instantions.Add(Instantiate(WhiteRockTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+            }
+            else
+            {
+                instantions.Add(Instantiate(WhiteBishopTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+            }
+
+
         }
         else
         {
             if (v[2] == "King")
+            {
                 instantions.Add(Instantiate(KnightBlackTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
-            else
+            }
+            else if (v[2] == "Rock")
+            {
                 instantions.Add(Instantiate(BlackRockTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+            }
+            else
+            {
+                instantions.Add(Instantiate(BlackBishopTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+            }
         }
 
 
