@@ -181,5 +181,12 @@ namespace Scripts
             }
             return false;
         }
+
+        public bool isFigureAt(Position rookPosition)
+        {
+            IFigure returned = figures.Find(x => x.position.x == rookPosition.x && x.position.y == rookPosition.y);
+            if (returned == null) return false;
+            return true;
+        }
     }
 }

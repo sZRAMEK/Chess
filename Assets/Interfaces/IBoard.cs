@@ -1,4 +1,5 @@
-﻿using Scripts.Figures;
+﻿using Assets.Scripts;
+using Scripts.Figures;
 using System.Collections.Generic;
 
 namespace Scripts
@@ -18,5 +19,6 @@ namespace Scripts
         IFigure GetFigureAt(IPosition position);
         IMove LastMove { get; set; }
         bool IsCheck(Color color);
+        bool isFigureAt(Position rookPosition);
     }
 }

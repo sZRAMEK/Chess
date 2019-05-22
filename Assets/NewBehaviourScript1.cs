@@ -31,19 +31,19 @@ public class NewBehaviourScript1 : MonoBehaviour
         chessSet.Add(new King(new Position(4, 0), Scripts.Figures.Color.White));
 
         chessSet.Add(new Rock(new Position(0, 0), Scripts.Figures.Color.White));
-        chessSet.Add(new Rock(new Position(7, 0), Scripts.Figures.Color.White));
+        //chessSet.Add(new Rock(new Position(7, 0), Scripts.Figures.Color.White));
         chessSet.Add(new Rock(new Position(0, 7), Scripts.Figures.Color.Black));
-        chessSet.Add(new Rock(new Position(7, 7), Scripts.Figures.Color.Black));
+        //chessSet.Add(new Rock(new Position(7, 7), Scripts.Figures.Color.Black));
 
-        chessSet.Add(new Bishop(new Position(2, 7), Scripts.Figures.Color.Black));
-        chessSet.Add(new Bishop(new Position(5, 7), Scripts.Figures.Color.Black));
-        chessSet.Add(new Bishop(new Position(2, 0), Scripts.Figures.Color.White));
-        chessSet.Add(new Bishop(new Position(5, 0), Scripts.Figures.Color.White));
+        //chessSet.Add(new Bishop(new Position(2, 7), Scripts.Figures.Color.Black));
+       // chessSet.Add(new Bishop(new Position(5, 7), Scripts.Figures.Color.Black));
+       // chessSet.Add(new Bishop(new Position(2, 0), Scripts.Figures.Color.White));
+       // chessSet.Add(new Bishop(new Position(5, 0), Scripts.Figures.Color.White));
 
-        chessSet.Add(new Knight(new Position(1, 7), Scripts.Figures.Color.Black));
-        chessSet.Add(new Knight(new Position(6, 7), Scripts.Figures.Color.Black));
-        chessSet.Add(new Knight(new Position(1, 0), Scripts.Figures.Color.White));
-        chessSet.Add(new Knight(new Position(6, 0), Scripts.Figures.Color.White));
+       // chessSet.Add(new Knight(new Position(1, 7), Scripts.Figures.Color.Black));
+       // chessSet.Add(new Knight(new Position(6, 7), Scripts.Figures.Color.Black));
+       // chessSet.Add(new Knight(new Position(1, 0), Scripts.Figures.Color.White));
+      //  chessSet.Add(new Knight(new Position(6, 0), Scripts.Figures.Color.White));
 
 
 

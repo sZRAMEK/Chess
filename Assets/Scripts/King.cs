@@ -30,7 +30,7 @@ namespace Assets.Scripts
             else
             {
                 int direction = to.x - position.x;
-                if (direction == 2 || direction == -2)
+                if ((direction == 2 || direction == -2) && to.y==position.y)
                 {
                     if (!moved)
                     {
@@ -46,23 +46,24 @@ namespace Assets.Scripts
                             rookPosition= new Position(0, position.y);
                         }
 
-
+                        if (board.isFigureAt(rookPosition))
+                        {
                             IFigure figure = board.GetFigureAt(rookPosition);
                             if (figure.Type == FigureType.Rock)
                             {
-                                Rock rock  = figure as Rock;
+                                Rock rock = figure as Rock;
                                 if (!rock.moved)
                                 {
                                     if (!board.isSomethingBetwen(position, rock.position))
                                     {
                                         if (!board.IsCheck(color))
                                         {
-                                            if (board.isUnderPreasure(new Position(position.x + direction, position.y), color))
+                                             if (!board.isUnderPreasure(new Position(position.x + direction, position.y), color))
                                             {
-                                                if (board.isUnderPreasure(to, color))
+                                                 if (!board.isUnderPreasure(to, color))
                                                 {
                                                     moveType = MoveTypes.Roszada;
-                                                return true;
+                                                    return true;
                                                 }
                                             }
                                         }
@@ -70,7 +71,7 @@ namespace Assets.Scripts
                                     }
                                 }
                             }
-                        
+                        }
                             
                             
                     }

@@ -1203,7 +1203,19 @@ MonoBehaviour:
   BLACKMARK: {fileID: 1665384499}
   KnightWhiteTemplate: {fileID: 379697930471551737, guid: 61d55ed2c94c03342b8fcf984390f355,
     type: 3}
-  KnightBlackTemplate: {fileID: 8948320061310589132, guid: 541f3ab6f8d6d53429e54b50a7ac3cf6,
+  KnightBlackTemplate: {fileID: 4472972367026966164, guid: 580c893ae7c35e14d809a28d77f50a67,
+    type: 3}
+  WhiteRockTemplate: {fileID: 7193772857347388942, guid: 3c126f05a3c0e494294a3bba2b889469,
+    type: 3}
+  BlackRockTemplate: {fileID: 2651024210958624324, guid: b5b95b58386a3f141832cfea1819787f,
+    type: 3}
+  WhiteBishopTemplate: {fileID: 3449670309735553953, guid: a84ceeabbdc45884c9805e3be3a7a33c,
+    type: 3}
+  BlackBishopTemplate: {fileID: 7874504844270535813, guid: b87818c4f1344ae448822a99ab32a015,
+    type: 3}
+  WhiteKnightTemplate: {fileID: 990029321322726374, guid: f922ca432664c134fba60387f74bba3f,
+    type: 3}
+  BlackKnightTemplate: {fileID: 6242519269633408544, guid: 37e3384dbfd72fa49bfce5cbfc829836,
     type: 3}
 --- !u!4 &1835503429
 Transform:
