@@ -19,7 +19,16 @@ namespace Assets.Scripts
 
            
             string[] strings = input.Split(',');
-            Enum.Parse(typeof(xLabels), strings[0][0].ToString());
+            try
+            {
+                Enum.Parse(typeof(xLabels), strings[0][0].ToString());
+            }
+            catch (Exception)
+            {
+
+                throw new InvalidInputException("Cant parse coordinates ");
+            }
+            
             if (strings.Length != 2) { throw new InvalidInputException($"Input need 1 coma separator was: {strings.Length - 1}"); };
 
 

@@ -151,7 +151,9 @@ namespace Scripts
 
         public bool isFieldColor(Color color, IPosition from)
         {
-            if (GetFigureAt(from).color == color)
+            IFigure figure = figures.Find(x => x.position.x == from.x && x.position.y == from.y);
+            
+            if (figure!=null && figure.color == color)
                 return true;
             return false;
         }
@@ -182,9 +184,9 @@ namespace Scripts
             return false;
         }
 
-        public bool isFigureAt(Position rookPosition)
+        public bool isFigureAt(IPosition position)
         {
-            IFigure returned = figures.Find(x => x.position.x == rookPosition.x && x.position.y == rookPosition.y);
+            IFigure returned = figures.Find(x => x.position.x == position.x && x.position.y == position.y);
             if (returned == null) return false;
             return true;
         }

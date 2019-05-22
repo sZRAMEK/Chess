@@ -6,6 +6,7 @@ namespace Scripts
 {
     public interface IFigure
     {
+        bool moved { get;  }
         IPosition position { get; set; }
         Color color { get; }
         FigureType Type { get; }

@@ -24,26 +24,40 @@ public class NewBehaviourScript1 : MonoBehaviour
     public GameObject WhiteKnightTemplate;
     public GameObject BlackKnightTemplate;
 
+    public GameObject BlackQueenTemplate;
+    public GameObject WhiteQueenTemplate;
+    public GameObject WhitePawnTemplate;
+    public GameObject BlackPawnTemplate;
+ 
     void Start()
         {
         List<IFigure> chessSet = new List<IFigure>();
         chessSet.Add(new King(new Position(4, 7), Scripts.Figures.Color.Black));
         chessSet.Add(new King(new Position(4, 0), Scripts.Figures.Color.White));
 
+        chessSet.Add(new Queen(new Position(3, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Queen(new Position(3, 0), Scripts.Figures.Color.White));
+
         chessSet.Add(new Rock(new Position(0, 0), Scripts.Figures.Color.White));
-        //chessSet.Add(new Rock(new Position(7, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Rock(new Position(7, 0), Scripts.Figures.Color.White));
         chessSet.Add(new Rock(new Position(0, 7), Scripts.Figures.Color.Black));
-        //chessSet.Add(new Rock(new Position(7, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Rock(new Position(7, 7), Scripts.Figures.Color.Black));
 
-        //chessSet.Add(new Bishop(new Position(2, 7), Scripts.Figures.Color.Black));
-       // chessSet.Add(new Bishop(new Position(5, 7), Scripts.Figures.Color.Black));
-       // chessSet.Add(new Bishop(new Position(2, 0), Scripts.Figures.Color.White));
-       // chessSet.Add(new Bishop(new Position(5, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Bishop(new Position(2, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Bishop(new Position(5, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Bishop(new Position(2, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Bishop(new Position(5, 0), Scripts.Figures.Color.White));
 
-       // chessSet.Add(new Knight(new Position(1, 7), Scripts.Figures.Color.Black));
-       // chessSet.Add(new Knight(new Position(6, 7), Scripts.Figures.Color.Black));
-       // chessSet.Add(new Knight(new Position(1, 0), Scripts.Figures.Color.White));
-      //  chessSet.Add(new Knight(new Position(6, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Knight(new Position(1, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Knight(new Position(6, 7), Scripts.Figures.Color.Black));
+        chessSet.Add(new Knight(new Position(1, 0), Scripts.Figures.Color.White));
+        chessSet.Add(new Knight(new Position(6, 0), Scripts.Figures.Color.White));
+
+        for (int i = 0; i < 8; i++)
+        {
+            chessSet.Add(new Pawn(new Position(i, 1), Scripts.Figures.Color.White));
+            chessSet.Add(new Pawn(new Position(i, 6), Scripts.Figures.Color.Black));
+        }
 
 
 
@@ -142,9 +156,19 @@ public class NewBehaviourScript1 : MonoBehaviour
             {
                 instantions.Add(Instantiate(WhiteBishopTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
             }
-            else
+            else if (v[2] == "Knight")
             {
                 instantions.Add(Instantiate(WhiteKnightTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+
+            }
+            else if (v[2] == "Queen")
+            {
+                instantions.Add(Instantiate(WhiteQueenTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+
+            }
+            else if (v[2] == "Pawn")
+            {
+                instantions.Add(Instantiate(WhitePawnTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
 
             }
 
@@ -164,9 +188,19 @@ public class NewBehaviourScript1 : MonoBehaviour
             {
                 instantions.Add(Instantiate(BlackBishopTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
             }
-            else
+            else if (v[2] == "Knight")
             {
                 instantions.Add(Instantiate(BlackKnightTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+
+            }
+            else if (v[2] == "Queen")
+            {
+                instantions.Add(Instantiate(BlackQueenTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
+
+            }
+            else if (v[2] == "Pawn")
+            {
+                instantions.Add(Instantiate(BlackPawnTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
 
             }
         }

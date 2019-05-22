@@ -19,6 +19,6 @@ namespace Scripts
         IFigure GetFigureAt(IPosition position);
         IMove LastMove { get; set; }
         bool IsCheck(Color color);
-        bool isFigureAt(Position rookPosition);
+        bool isFigureAt(IPosition rookPosition);
     }
 }

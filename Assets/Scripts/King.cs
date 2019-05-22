@@ -12,12 +12,12 @@ namespace Assets.Scripts
 {
     public class King : Figure,IKing
     {
-        public bool moved;
+        
 
         public King(IPosition position,Color color) : base(position,color)
         {
             Type = FigureType.King;
-            moved = false;
+           
         }
 
         public override bool isLegalMove(IPosition to, IBoard board, out MoveTypes moveType)
