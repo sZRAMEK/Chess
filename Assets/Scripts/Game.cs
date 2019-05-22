@@ -34,18 +34,7 @@ namespace Scripts
             activePlayer = this.player2;
         }
 
-        public void MakeMove(string input)
-        {
-            activePlayer.GetInput(input);
-            if (winer  == null)
-            {
-                winer = DetermineWinner();
-                activePlayer.Move();
-                activePlayer = NextPlayer();
-                
-          
-            }
-        }
+       
 
         private IPlayer NextPlayer()
         {
@@ -67,6 +56,19 @@ namespace Scripts
         public string GetBoardDescription()
         {
            return  activePlayer.Color+"/"+board.BoardToString();
+        }
+
+        public void MakeMove(string input)
+        {
+                
+                activePlayer.GetInput(input);
+                if (winer == null)
+                {
+                    winer = DetermineWinner();
+                    activePlayer.Move();
+                    activePlayer = NextPlayer();
+                }
+            
         }
     }
 }

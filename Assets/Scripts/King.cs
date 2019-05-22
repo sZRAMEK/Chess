@@ -1,4 +1,5 @@
-﻿using Assets.Interfaces;
+﻿using Assets.Enums;
+using Assets.Interfaces;
 using Scripts;
 using Scripts.Figures;
 using System;
@@ -9,74 +10,75 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
-    public class King : IKing
+    public class King : Figure,IKing
     {
-        public King(IPosition position,Color color)
+        public bool moved;
+
+        public King(IPosition position,Color color) : base(position,color)
         {
-            this.position = position;
-            this.color = color;
-            this.Type = FigureType.King;
+            Type = FigureType.King;
             moved = false;
         }
 
-        public IPosition position { get; private set; }
-
-        public Color color { get; private set; }
-
-        public FigureType Type { get; private set; }
-
-        public bool moved;
-
-        
-
-        public bool isPosibleMove(IPosition to)
+        public override bool isLegalMove(IPosition to, IBoard board, out MoveTypes moveType)
         {
-            if (Math.Abs(to.x - position.x)<=1 && Math.Abs(to.y - position.y)<=1)
+            moveType = MoveTypes.NormalMove;
+            if (Math.Abs(to.x - position.x) <= 1 && Math.Abs(to.y - position.y) <= 1)
             {
                 return true;
             }
-            return false;
-        }
-
-        
-
-        public int LegalMovesCount(IBoard board)
-        {
-            int result = 0;
-            for (int x = 0; x < board.Size; x++)
+            else
             {
-                for (int y = 0; y < board.Size; y++)
+                int direction = to.x - position.x;
+                if (direction == 2 || direction == -2)
                 {
-                    IPosition newpos = new Position(x, y);
+                    if (!moved)
+                    {
+                        Position rookPosition;
+                        if (direction == 2)
+                        {
+                            direction = 1;
+                            rookPosition = new Position(7, position.y);
+                        }
+                        else
+                        {
+                            direction = -1;
+                            rookPosition= new Position(0, position.y);
+                        }
 
 
-                    if (isLegalMove(newpos, board))
-                        result++;
-                }            
+                            IFigure figure = board.GetFigureAt(rookPosition);
+                            if (figure.Type == FigureType.Rock)
+                            {
+                                Rock rock  = figure as Rock;
+                                if (!rock.moved)
+                                {
+                                    if (!board.isSomethingBetwen(position, rock.position))
+                                    {
+                                        if (!board.IsCheck(color))
+                                        {
+                                            if (board.isUnderPreasure(new Position(position.x + direction, position.y), color))
+                                            {
+                                                if (board.isUnderPreasure(to, color))
+                                                {
+                                                    moveType = MoveTypes.Roszada;
+                                                return true;
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        
+                            
+                            
+                    }
+                }
             }
-            return result;
+                return false;
         }
 
-        public void Move(IPosition to)
-        {
-            position = to;
-            moved = true;
-        }
-
-        public bool isLegalMove(IPosition to, IBoard board)
-        {
-            if (isPosibleMove(to)&& board.isPositionInBoundry(to))
-                return true;
-
-            if (!moved && Math.Abs(position.y - to.y) == 2 && position.x == to.x)
-            {
-                if (position.y - to.y < 0&& board.) { }
-            }
-
-
-            return false;
-
-        }
-
+        
     }
 }

@@ -15,7 +15,7 @@ namespace Scripts
         public List<IFigure> figures { get; set; }
         public int Size { get; private set; }
 
-        IMove lastMove;
+        public IMove LastMove { get; set; }
 
 
 
@@ -54,7 +54,7 @@ namespace Scripts
 
         }
 
-        public void Move(IMove move)
+        /*(public void Move(IMove move)
         {
             if (move.From.x > 7 || move.From.y > 7 || move.To.x < 0 || move.To.y < 0 || move.To.x > 7 || move.To.y > 7 || move.To.x < 0 || move.To.y < 0)
             {
@@ -74,6 +74,7 @@ namespace Scripts
             if (figureToMove.isLegalMove(move.To, this))
             {
                 figureToMove.Move(move.To);
+                
                 if (isCheck(GetKing(figureToMove.color)))
                 {
                     figureToMove.Move(move.From);
@@ -85,19 +86,20 @@ namespace Scripts
             {
                 throw new InvalidMoveException("you cnat move like that");
             }
-        }
+        }*/
 
         private IFigure GetKing(Color color)
         {
             return figures.Find(x => x.color == color && x.Type==FigureType.King);
         }
 
-        private bool isCheck(IFigure king)
+        public bool IsCheck(Color color)
         {
-            
+            IFigure king = GetKing(color);
             foreach (var item in figures)
             {
-                if (item.color!=king.color && item.isLegalMove(king.position, this))
+                MoveTypes moveType;
+                if (item.color!=king.color && item.isLegalMove(king.position, this, out moveType))
                     return true;
                 
             }
@@ -106,7 +108,7 @@ namespace Scripts
 
         public IFigure GetFigureAt(IPosition from)
         {
-            IFigure returned= figures.Find(x => x.position.x == from.x && x.position.y == from.y);
+            IFigure  returned= figures.Find(x => x.position.x == from.x && x.position.y == from.y);
             if (returned == null) { throw new NoFigureException("nie masz tam figury"); }
             return returned;
         }
@@ -117,7 +119,8 @@ namespace Scripts
         {
             foreach (IFigure item in figures)
             {
-                if (item.color != color && item.isLegalMove(to, this))
+                MoveTypes moveType;
+                if (item.color != color && item.isLegalMove(to, this, out moveType))
                     return true;
             }
             return false;

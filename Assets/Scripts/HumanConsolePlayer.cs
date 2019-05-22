@@ -38,7 +38,7 @@ namespace Scripts
             //input = Console.ReadLine();
             IMove move = moveParser.Parse(input);
             if (!board.isFieldColor(Color, move.From)) { throw new InvalidMoveException("nie twoj pionek"); }
-            board.Move(move);
+            board.GetFigureAt(move.From).Move(move.To, board);
             timer.Stop();
 
         }
