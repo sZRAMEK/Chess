@@ -28,9 +28,12 @@ public class NewBehaviourScript1 : MonoBehaviour
     public GameObject WhiteQueenTemplate;
     public GameObject WhitePawnTemplate;
     public GameObject BlackPawnTemplate;
- 
+
+    public GameObject activeFieldMarker;
+    
     void Start()
         {
+
         List<IFigure> chessSet = new List<IFigure>();
         chessSet.Add(new King(new Position(4, 7), Scripts.Figures.Color.Black));
         chessSet.Add(new King(new Position(4, 0), Scripts.Figures.Color.White));
@@ -70,9 +73,33 @@ public class NewBehaviourScript1 : MonoBehaviour
         DrawBoard(gra.GetBoardDescription());
 
     }
+    string input;
+    Vector3 from;
+    Vector3 to;
+    string[] xes = new string[] {"A","B","C","D","E","F","G","H" };
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        { 
+           from =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        activeFieldMarker.transform.position = new Vector3((int)Math.Round(position.x), (int)Math.Round(position.y), 0);
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            to = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log(Math.Round(from.x)+"/"+ Math.Round(from.y)+" "+ Math.Round(to.x)+"/"+ Math.Round(to.y));
+            GetMessage(xes[(int)Math.Round(from.x)] + (int)Math.Round(from.y+1)+","+ xes[(int)Math.Round(to.x)] + (int)Math.Round(to.y+1));
+        }
+
+
+    }
+
 
     public void GetMessage(string message)
     {
+       
         Debug.Log(message);
         try
         {
@@ -127,8 +154,10 @@ public class NewBehaviourScript1 : MonoBehaviour
 
         foreach (var item in instantions)
         {
-            GameObject.Destroy(item);
+            Destroy(item);
         }
+
+        instantions = new List<GameObject>();
 
 
         foreach (var item in FIGURY)
@@ -205,9 +234,12 @@ public class NewBehaviourScript1 : MonoBehaviour
             }
         }
 
-
+        
 
 
     }
+
+
+
 }
 

@@ -55,16 +55,22 @@ namespace Scripts
 
         public string GetBoardDescription()
         {
-           return  activePlayer.Color+"/"+board.BoardToString();
+            string result = activePlayer.Color + "/" + board.BoardToString() + "/";
+            if (winer != null)
+            {
+                result += winer.ToString();
+            }
+            return result;
         }
 
         public void MakeMove(string input)
         {
                 
-                activePlayer.GetInput(input);
+                
+                winer = DetermineWinner();
                 if (winer == null)
                 {
-                    winer = DetermineWinner();
+                    activePlayer.GetInput(input);
                     activePlayer.Move();
                     activePlayer = NextPlayer();
                 }

@@ -139,7 +139,10 @@ namespace Scripts
             string result = "";
             foreach (var item in figures)
             {
-                result += $"{item.position.x},{item.position.y},{item.Type},{item.color}.";
+                if (item != null)
+                {
+                    result += $"{item.position.x},{item.position.y},{item.Type},{item.color}.";
+                }
             }
             result = result.Remove(result.Length - 1, 1);
             
