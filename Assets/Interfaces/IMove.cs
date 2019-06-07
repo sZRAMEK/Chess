@@ -1,8 +1,15 @@
-﻿namespace Scripts
+﻿using Assets.Enums;
+
+namespace Scripts
 {
-    public interface IMove
+    public interface IMove : System.ICloneable
     {
-        IPosition From { get; }
-        IPosition To { get; }
+        IPosition Start { get; }
+        IPosition Destination { get; }
+        MoveDirection Direction();
+        DistanceEnum Distance();
+        int SenseHorizontal();
+        int SenseVertical();
+        
     }
 }

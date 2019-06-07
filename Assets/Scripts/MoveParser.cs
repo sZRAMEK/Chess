@@ -38,23 +38,23 @@ namespace Assets.Scripts
             
                 if (Enum.IsDefined(typeof(xLabels), strings[0][0].ToString()))
                 {
-                try
-                {
-
-                
+                    try
+                    {
                     From = new Position((int)Enum.Parse(typeof(xLabels), strings[0][0].ToString()), int.Parse(strings[0][1].ToString()) - 1);
                     if (Enum.IsDefined(typeof(xLabels), strings[1][0].ToString()))
                     {
                         to = new Position((int)Enum.Parse(typeof(xLabels), strings[1][0].ToString()), int.Parse(strings[1][1].ToString()) - 1);
                         return new Move(From, to);
                     }
-                }
-                catch (Exception ex)
-                {
-
+                    }
+                    
+                    catch (Exception ex)
+                    {
+                    
                     throw new InvalidInputException("Cant parse coordinates "+ ex.Message);
+                    }
+
                 }
-            }
             
             
 

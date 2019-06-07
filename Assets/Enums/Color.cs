@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Scripts.Figures
 {
     public enum Color
-    {
-        
+    {  
         Black=1,
         White=0
     }

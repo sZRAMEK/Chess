@@ -1,6 +1,9 @@
-﻿namespace Scripts.Figures
+﻿using System.Collections.Generic;
+
+namespace Scripts.Figures
 {
-    public interface IKing : IFigure
+    public interface IKing : IPiece
     {
+        List<IMove> Castling(IMove move, IBoard board);
     }
 }

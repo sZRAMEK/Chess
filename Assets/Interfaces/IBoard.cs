@@ -1,24 +1,28 @@
 ﻿using Assets.Scripts;
 using Scripts.Figures;
+using System;
 using System.Collections.Generic;
 
 namespace Scripts
 {
-    public interface IBoard
+    public interface IBoard : ICloneable
     {
-
-       
-        List<IFigure> figures{ get; set; }
-        Color? DetermineWinner();
-        bool isUnderPreasure(IPosition to, Color color);
-        bool isPositionInBoundry(IPosition to);
-        int Size { get;}
-        string BoardToString();
-        bool isFieldColor(Color color, IPosition from);
-        bool isSomethingBetwen(IPosition position, IPosition to);
-        IFigure GetFigureAt(IPosition position);
+        int Size { get; }
         IMove LastMove { get; set; }
+        
+
+        bool IsFieldAttacked(IPosition field, Color Attacker);
+        string BoardToString();
         bool IsCheck(Color color);
-        bool isFigureAt(IPosition rookPosition);
+        bool isCheckMate(Color color);
+        bool AreAnyPiecesBetwen(IPosition A, IPosition B);
+        IPiece GetFigureAt(IPosition position);
+        void RemovePiece(IPiece pieceToRemove);
+        IPiece PromotionRequired();
+        Color CurrentTurn();
+
+        IBoard Move(IMove move);
+        void ChangePiece(IPiece toPromote, IPiece selected);
+        bool isTie(Color color);
     }
 }
