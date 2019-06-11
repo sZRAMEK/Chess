@@ -97,15 +97,7 @@ public class NewBehaviourScript1 : MonoBehaviour
         gra = new Game(board);
        
        
-            DrawBoard(gra.GetBoardDescription());
-        
-       
-       
-
-        
-      
-       
-
+        DrawBoard(gra.GetBoardDescription());
     }
     string input;
     Vector3 from;
@@ -113,8 +105,6 @@ public class NewBehaviourScript1 : MonoBehaviour
     string[] xes = new string[] {"A","B","C","D","E","F","G","H" };
     private string winner = "";
     string[] boardinfo = null;
-
-    
 
     private void Update()
     {
@@ -250,8 +240,6 @@ public class NewBehaviourScript1 : MonoBehaviour
                 instantions.Add(Instantiate(WhitePawnTemplate, new Vector3(int.Parse(v[0]), int.Parse(v[1]), -1), Quaternion.identity));
 
             }
-
-
         }
         else
         {
@@ -283,13 +271,6 @@ public class NewBehaviourScript1 : MonoBehaviour
 
             }
         }
-
-        
-
-
     }
-
-
-
 }
 

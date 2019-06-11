@@ -96,12 +96,6 @@ namespace Scripts
                 return false;
         }
 
-        //public bool IsCheck(Color color)
-        //{
-        //    IPiece king = GetKing(color);
-        //    return IsFieldAttacked(king.currentPosition, king.color);
-        //}
-
         public IPiece GetFigureAt(IPosition from)
         {
             return figures.Find(x => x.currentPosition.x == from.x && x.currentPosition.y == from.y);
@@ -167,16 +161,9 @@ namespace Scripts
                
                     if (GetFigureAt(LastMove.Destination).color == Color.White)
                         return Color.Black;
-               
-                
-               
-                
             }
-            return Color.White;  //before first move lastMove is null  // ale to powinno byc jakos inaczej napisane
+            return Color.White;
         }
-
-
-
 
         private IPiece GetKing(Color color)
         {
@@ -196,8 +183,6 @@ namespace Scripts
             IPiece pieceToMove = result.GetFigureAt(move.Start);
             IPiece attackedPiece = result.GetFigureAt(move.Destination);
 
-
-
             if (!AreAnyPiecesBetwen(move.Start, move.Destination))
             {
 
@@ -205,12 +190,6 @@ namespace Scripts
                 {
                     if (pieceToMove.IsAllowedMove(move))
                     {
-
-
-
-
-
-
                         pieceToMove.Move(move.Destination);
                         if (!result.IsCheck(pieceToMove.color))
                         {
@@ -272,8 +251,6 @@ namespace Scripts
             }
             return null;
         }
-
-        
 
         public bool IsCheck(Color color)
         {

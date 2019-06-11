@@ -18,9 +18,6 @@ namespace Assets.Scripts
             return clone;
         }
 
-
-
-
         public Move(IPosition start, IPosition destination)
         {
             this.Start = start;
@@ -30,9 +27,6 @@ namespace Assets.Scripts
             
 
         }
-
-        
-        
 
         private int Sense(int start, int destination)
         {

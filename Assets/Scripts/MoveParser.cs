@@ -17,7 +17,6 @@ namespace Assets.Scripts
             if (input.Length > 5) { throw new InvalidInputException("Input is to long"); }
             if (input.Length < 5) { throw new InvalidInputException("Input is to short"); }
 
-           
             string[] strings = input.Split(',');
             try
             {
@@ -30,7 +29,6 @@ namespace Assets.Scripts
             }
             
             if (strings.Length != 2) { throw new InvalidInputException($"Input need 1 coma separator was: {strings.Length - 1}"); };
-
 
             IPosition From;
             IPosition to;
@@ -55,13 +53,7 @@ namespace Assets.Scripts
                     }
 
                 }
-            
-            
-
                 throw new InvalidInputException("Cant parse coordinates ");
-            
-
-            
         }
 
         enum xLabels

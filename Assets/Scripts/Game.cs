@@ -13,8 +13,6 @@ namespace Scripts
     {
         private IBoard board;
 
-        
-
         public Game(IBoard board)
         {
             this.board = board;
@@ -67,13 +65,6 @@ namespace Scripts
 
             return result;
         }
-
-
-
-
-        
-
-
 
         private void Promote(string input)
         {

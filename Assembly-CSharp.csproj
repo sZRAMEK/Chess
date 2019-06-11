@@ -83,7 +83,6 @@
     <Compile Include="Assets\Interfaces\IQueen.cs" />
     <Compile Include="Assets\Interfaces\IRock.cs" />
     <Compile Include="Assets\Interfaces\ITimer.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\NewBehaviourScript1.cs" />
     <Compile Include="Assets\Pieces\Bishop.cs" />
     <Compile Include="Assets\Pieces\King.cs" />
@@ -123,17 +122,17 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>C:/Users/sZRAMEK/Documents/Chess/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/sZRAMEK/Documents/Chess/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/sZRAMEK/Documents/Chess/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
     <Reference Include="Editor">
       <HintPath>C:/Users/sZRAMEK/Documents/Chess/Library/ScriptAssemblies/Editor.dll</HintPath>
     </Reference>
     <Reference Include="XiaomiSupport">
       <HintPath>C:/Users/sZRAMEK/Documents/Chess/Library/ScriptAssemblies/XiaomiSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/sZRAMEK/Documents/Chess/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Users/sZRAMEK/Documents/Chess/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
